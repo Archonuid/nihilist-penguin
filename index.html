@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Penguin</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- INTRO SCREEN -->
+  <div id="intro" class="screen active">
+    <div class="intro-prose" id="intro-text">
+      <p>Everyone followed the path that worked.</p>
+      <p>He didn't, mostly out of curiosity.</p>
+      <p>The cold does not reward curiosity.</p>
+    </div>
+  </div>
+
+  <!-- MAIN MENU SCREEN -->
+  <div id="menu" class="screen">
+    <div id="menu-bg"></div>
+    <canvas id="scene-canvas"></canvas>
+    <div id="game-title">Nihilist Penguin</div>
+    <div class="menu-overlay">
+      <button class="menu-btn" id="btn-play">Play</button>
+      <button class="menu-btn" id="btn-turn">Turn back</button>
+      <button class="menu-btn" id="btn-nothing">Do nothing</button>
+    </div>
+  </div>
+
+  <!-- TURN BACK SCREEN -->
+  <div id="turnback" class="screen">
+    <div class="turn-prose" id="turn-text">
+      <p>He turned back and rejoined the others.</p>
+      <p>Nothing went wrong.</p>
+      <p>Nothing new happened either.</p>
+    </div>
+  </div>
+
+  <!-- DO NOTHING SCREEN -->
+  <div id="donothing" class="screen">
+    <button id="regret-btn">I regret this</button>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen" class="screen">
+    <canvas id="game-canvas"></canvas>
+    <div id="game-ui">distance: <span id="dist">0</span>m</div>
+    <div id="tap-hint" class="show">tap or press space to jump</div>
+    <button id="mute-btn">🔊</button>
+  </div>
+
+  <!-- DEATH SCREEN -->
+  <div id="death" class="screen">
+    <div class="death-prose" id="death-text">
+      <p>The mountain did not notice.</p>
+      <p>The path remained unchanged.</p>
+      <p>Somewhere, the flock kept moving.</p>
+    </div>
+  </div>
+
+  <!-- these run after sprites are loaded -->
+   <script src="loader.js"></script>
+   <script src="audio.js"></script>
+  <script src="screens.js"></script>
+  <script src="menu-scene.js"></script>
+  <script src="game.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

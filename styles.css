@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Cormorant+Garamond:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ============================================================
+   SCREENS — all screens stack on top of each other,
+   only the .active one is visible and clickable
+   ============================================================ */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.8s ease;
+  z-index: 10;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ============================================================
+   INTRO SCREEN
+   ============================================================ */
+
+#intro {
+  background: #000;
+  z-index: 20;
+}
+
+.intro-prose {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  line-height: 2;
+  text-align: center;
+  color: #c8c4bc;
+  opacity: 0;
+  transition: opacity 2s ease;
+  max-width: 520px;
+  padding: 0 24px;
+}
+
+.intro-prose.visible {
+  opacity: 1;
+}
+
+.intro-prose p {
+  margin-bottom: 0.6em;
+}
+
+/* ============================================================
+   MAIN MENU SCREEN
+   ============================================================ */
+
+#menu {
+  z-index: 10;
+  flex-direction: column;
+}
+
+#menu-bg {
+  position: absolute;
+  inset: 0;
+  background: #0a0e1a;
+}
+
+#scene-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-overlay {
+  position: relative;
+  z-index: 3;         
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 6vh;   
+}
+
+.menu-btn {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  color: #b8b4ac;
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.12em;
+  padding: 10px 32px;
+  position: relative;
+  transition: color 0.4s, transform 0.3s;
+}
+
+.menu-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  right: 50%;
+  height: 1px;
+  background: #b8b4ac;
+  transition: left 0.4s ease, right 0.4s ease;
+}
+
+.menu-btn:hover {
+  color: #fff;
+  transform: scale(1.04);
+}
+
+.menu-btn:hover::before {
+  left: 12%;
+  right: 12%;
+}
+
+/* ============================================================
+   TURN BACK SCREEN
+   ============================================================ */
+
+#turnback {
+  background: #000;
+  z-index: 15;
+}
+
+.turn-prose {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
+  line-height: 2.2;
+  text-align: center;
+  color: #8a8680;
+  max-width: 480px;
+  padding: 0 24px;
+  opacity: 0;
+  transition: opacity 2.2s ease;
+}
+
+.turn-prose.visible {
+  opacity: 1;
+}
+
+.turn-prose p {
+  margin-bottom: 0.5em;
+}
+
+/* ============================================================
+   DO NOTHING SCREEN
+   ============================================================ */
+
+#donothing {
+  background: #000;
+  z-index: 15;
+}
+
+#regret-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: #3d3d3d;
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 1.2s ease, color 0.4s;
+  pointer-events: none;
+}
+
+#regret-btn.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#regret-btn:hover {
+  color: #7a7a7a;
+}
+
+/* ============================================================
+   GAME SCREEN
+   ============================================================ */
+
+#game-screen {
+  z-index: 15;
+  background: #000;
+}
+
+#game-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#game-ui {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 2;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #6b7080;
+  letter-spacing: 0.08em;
+}
+
+#tap-hint {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  color: #3a3a3a;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 3;
+  opacity: 0;
+}
+
+#tap-hint.show {
+  animation: wink 2s ease infinite;
+}
+
+@keyframes wink {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.55; }
+}
+
+/* ============================================================
+   DEATH SCREEN
+   ============================================================ */
+
+#death {
+  background: #000;
+  z-index: 20;
+}
+
+.death-prose {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  line-height: 2.2;
+  text-align: center;
+  color: #6b6560;
+  max-width: 460px;
+  padding: 0 24px;
+  opacity: 0;
+  transition: opacity 2.5s ease;
+}
+
+.death-prose.visible {
+  opacity: 1;
+}
+
+.death-prose p {
+  margin-bottom: 0.5em;
+}
+
+#mute-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  z-index: 5;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7080;
+  transition: transform 0.2s, color 0.3s;
+}
+
+#mute-btn:hover {
+  transform: scale(1.1);
+  color: #ffffff;
+}
+
+#game-title {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.35);
+  text-shadow: 0 2px 8px rgba(252, 252, 249, 0.35); 
+  pointer-events: none;
+}
+
+#game-title {
+  transition: opacity 1.6s ease;
+}
+
+#menu-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+
+  font-size: clamp(2.8rem, 6vw, 3.8rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  white-space: nowrap;              
+
+  color: rgba(246, 244, 242, 0.9);   
+
+  margin-bottom: 48px;              
+  text-align: center;
+
+  z-index: 3;                    
+  pointer-events: none;
+}
+
+#menu-title::after {
+  content: '';
+  display: block;
+  width: 55%;
+  height: 1px;
+  margin: 22px auto 0;
+  background: rgba(244, 243, 241, 0.35);
+}
