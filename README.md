@@ -6,6 +6,8 @@ Nihilist Penguin is a minimalist, atmospheric endless-runner where a lone pengui
 
 Jump over obstacles, survive as long as you can, and eventually accept that the mountain does not care. Inspired by Nihilist Penguin meme. Lmao.
 
+<img width="1919" height="992" alt="Image" src="https://github.com/user-attachments/assets/0ed5272e-ca5c-45a1-8a5a-c33ba492da7d" />
+
 ---
 
 ## 🎮 How to Play
